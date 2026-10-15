@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduSpark AI - المنصة الذكية للمذاكرة وتوليد الاختبارات</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts (Cairo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              cyan: '#06b6d4',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+    }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+  <!-- شريط التنقل العلوي -->
+  <header class="sticky top-0 z-50 glass-card border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3 cursor-pointer" onclick="scrollToSection('hero')">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-cyan flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+          <i class="fa-solid fa-brain text-lg"></i>
+        </div>
+        <div>
+          <span class="text-xl font-extrabold tracking-wide">EduSpark <span class="text-brand-cyan">AI</span></span>
+          <span class="text-xs text-slate-400 block -mt-1 font-medium">مساعد المذاكرة الذكي</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+        <button onclick="scrollToSection('hero')" class="hover:text-brand-cyan transition">الرئيسية</button>
+        <button onclick="scrollToSection('workspace')" class="hover:text-brand-cyan transition">استوديو الأسئلة</button>
+        <button onclick="scrollToSection('pomodoro')" class="hover:text-brand-cyan transition">مؤقت التركيز</button>
+      </nav>
+
+      <button onclick="scrollToSection('workspace')" class="px-4 py-2 text-sm font-bold rounded-lg bg-gradient-to-r from-brand-600 to-brand-cyan text-white shadow-md hover:brightness-110 transition active:scale-95">
+        ابدأ المذاكرة مجاناً
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-grow space-y-24 py-12">
+    <!-- 1. الصفحة الابتدائية / Hero Section -->
+    <section id="hero" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-brand-cyan text-xs font-bold mb-6 animate-pulse">
+        <i class="fa-solid fa-sparkles"></i> مدعوم بنماذج الذكاء الاصطناعي التوليدي
+      </div>
+      
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+        حوّل مذكراتك ومحاضراتك إلى <span class="gradient-text">اختبارات تفاعلية ذكية</span> في ثوانٍ
+      </h1>
+      
+      <p class="text-slate-400 text-base sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+        ضع محتوى دراستك وسيقوم الذكاء الاصطناعي باستخراج المفاهيم الأساسية، تلخيص المحتوى، وتوليد بنك أسئلة واختبارات مصحوبة بالشرح الفوري لكل إجابة.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <button onclick="scrollToSection('workspace')" class="px-8 py-3.5 rounded-xl font-bold bg-brand-600 hover:bg-brand-500 text-white shadow-xl shadow-brand-600/30 transition transform hover:-translate-y-0.5">
+          <i class="fa-solid fa-wand-magic-sparkles ml-2"></i> جرّب التطبيق الآن
+        </button>
+        <button onclick="scrollToSection('features')" class="px-8 py-3.5 rounded-xl font-bold glass-card hover:bg-slate-800 text-slate-200 transition">
+          استكشف المزايا
+        </button>
+      </div>
+
+      <!-- المميزات السريعة -->
+      <div id="features" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 text-right">
+        <div class="glass-card p-6 rounded-2xl hover:border-brand-500/50 transition">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-file-lines"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">توليد اختبارات فورية</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">تحويل المحاضرات والملفات إلى أسئلة اختيار من متعدد وصح وخطأ بمستويات صعوبة متفاوتة.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl hover:border-cyan-500/50 transition">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">شرح وتحليل ذكي</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">تفسير دقيق وتعليمي للأسباب الكامنة وراء كل إجابة مع تلميحات ذكية لتثبيت المعلومة.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl hover:border-purple-500/50 transition">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-stopwatch"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2">تقنية بومودورو للتركيز</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">مؤقت دراسي مدمج لإدارة فترات المذاكرة والاستراحة لرفع الإنتاجية وتقليل الإجهاد.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. استوديو العمل والمذاكرة (Workspace) -->
+    <section id="workspace" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-extrabold">منطقة المذاكرة الذكية</h2>
+        <p class="text-slate-400 text-sm mt-2">أدخل النص أو اختر أحد النماذج الجاهزة لتوليد الاختبار فوراً</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- قسم الإدخال والإعدادات -->
+        <div class="lg:col-span-5 glass-card p-6 rounded-2xl space-y-5">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-sm font-bold text-slate-300">محتوى المادة الدراسية:</label>
+              <div class="flex gap-2">
+                <button onclick="loadPreset('cyber')" class="text-xs bg-slate-800 hover:bg-slate-700 text-brand-cyan px-2.5 py-1 rounded-md transition">أمن سيبراني</button>
+                <button onclick="loadPreset('ai')" class="text-xs bg-slate-800 hover:bg-slate-700 text-indigo-400 px-2.5 py-1 rounded-md transition">ذكاء اصطناعي</button>
+              </div>
+            </div>
+            <textarea id="studyContent" rows="7" placeholder="الصق هنا ملخص المحاضرة أو النقاط التي ترغب بمراجعتها..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3.5 text-sm focus:outline-none focus:border-brand-500 transition resize-none"></textarea>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-bold text-slate-400 block mb-1.5">مستوى الصعوبة:</label>
+              <select id="difficulty" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm focus:outline-none focus:border-brand-500">
+                <option value="easy">متوسط / مباشر</option>
+                <option value="hard">متقدم / استنتاجي</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-bold text-slate-400 block mb-1.5">نوع الأسئلة:</label>
+              <select id="qType" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm focus:outline-none focus:border-brand-500">
+                <option value="all">مختلط (اختيارات + صح/خطأ)</option>
+                <option value="mcq">اختيار من متعدد فقط</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="generateBtn" onclick="generateQuiz()" class="w-full py-3.5 rounded-xl font-bold bg-gradient-to-r from-brand-600 to-brand-cyan hover:brightness-110 text-white shadow-lg shadow-brand-500/20 transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-bolt"></i> توليد بنك الأسئلة والملخص
+          </button>
+        </div>
+
+        <!-- قسم عرض الأسئلة والنتائج -->
+        <div class="lg:col-span-7 space-y-6">
+          <!-- شريط الإنجاز والنقاط -->
+          <div id="statsBar" class="hidden glass-card p-4 rounded-xl flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="text-sm text-slate-400">النتيجة:</span>
+              <span id="scoreText" class="text-lg font-extrabold text-emerald-400">0 / 0</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="resetQuiz()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg text-slate-300">
+                <i class="fa-solid fa-rotate-right ml-1"></i> إعادة الاختبار
+              </button>
+            </div>
+          </div>
+
+          <!-- حالة الانتظار / Empty State -->
+          <div id="emptyState" class="glass-card p-12 rounded-2xl text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-800 flex items-center justify-center text-slate-500 text-2xl">
+              <i class="fa-solid fa-clipboard-question"></i>
+            </div>
+            <h4 class="text-lg font-bold text-slate-300 mb-1">لا توجد أسئلة معروضة حالياً</h4>
+            <p class="text-sm text-slate-500 max-w-sm mx-auto">الصق النص في الحقل المقابل أو اختر أحد النماذج الجاهزة، ثم اضغط على زر التوليد.</p>
+          </div>
+
+          <!-- مؤشر التحميل -->
+          <div id="loadingState" class="hidden glass-card p-12 rounded-2xl text-center space-y-4">
+            <div class="w-12 h-12 border-4 border-brand-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p class="text-sm font-semibold text-brand-cyan animate-pulse">يقوم الذكاء الاصطناعي الآن بقراءة المحتوى وتوليد الأسئلة والشروحات...</p>
+          </div>
+
+          <!-- قائمة الأسئلة المولدة -->
+          <div id="quizContainer" class="space-y-4 hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. مؤقت بومودورو للتركيز (Pomodoro Timer) -->
+    <section id="pomodoro" class="max-w-md mx-auto px-4">
+      <div class="glass-card p-8 rounded-3xl text-center border-brand-500/30 relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-28 h-28 bg-brand-500/10 rounded-full blur-2xl"></div>
+        <h3 class="text-lg font-extrabold mb-1"><i class="fa-solid fa-clock ml-2 text-brand-cyan"></i>مؤقت بومودورو للمذاكرة</h3>
+        <p class="text-xs text-slate-400 mb-6">25 دقيقة تركيز تام تليها 5 دقائق استراحة</p>
+
+        <div class="text-6xl font-black tracking-widest text-white my-4 font-mono" id="timerDisplay">25:00</div>
+
+        <div class="flex justify-center gap-3 mt-6">
+          <button id="timerToggleBtn" onclick="toggleTimer()" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-500 rounded-xl font-bold text-sm transition">بدء</button>
+          <button onclick="resetTimer()" class="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl font-bold text-sm text-slate-300 transition">إعادة ضبط</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-900 glass-card py-6 text-center text-xs text-slate-500">
+    EduSpark AI © 2026 — تم تطويره باستخدام أدوات ونماذج الذكاء الاصطناعي الحديثة
+  </footer>
+
+  <script>
+    // بيانات تجريبية سريعة
+    const presets = {
+      cyber: "يعمل مركز العمليات الأمنية (SOC) كخط دفاع أول لمراقبة الأحداث الأمنية وتحليل السجلات واكتشاف الهجمات السيبرانية. يعتمد المحللون على أنظمة SIEM لجمع السجلات، وتعد مرحلة الاحتواء (Containment) في الاستجابة للحوادث حاسمة لعزل الأنظمة المصابة ومنع انتشار التهديد عبر الشبكة.",
+      ai: "التعلم الآلي (Machine Learning) هو فرع من فروع الذكاء الاصطناعي يركز على بناء خوارزميات تتعلم من البيانات السابقة. ينقسم التعلم الآلي إلى تعلّم بإشراف (Supervised) وتعلّم بدون إشراف (Unsupervised). بينما تركز الشبكات العصبية العميقة على محاكاة طريقة عمل الخلايا العصبية البيولوجية لمعالجة الأنماط المعقدة."
+    };
+
+    function loadPreset(key) {
+      document.getElementById('studyContent').value = presets[key];
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // منطق توليد الأسئلة
+    let currentQuestions = [];
+    let score = 0;
+    let answeredCount = 0;
+
+    function generateQuiz() {
+      const content = document.getElementById('studyContent').value.trim();
+      if (!content) {
+        alert("يرجى إدخال محتوى دراسي أو اختيار نموذج جاهز أولاً!");
+        return;
+      }
+
+      const emptyState = document.getElementById('emptyState');
+      const loadingState = document.getElementById('loadingState');
+      const quizContainer = document.getElementById('quizContainer');
+      const statsBar = document.getElementById('statsBar');
+
+      emptyState.classList.add('hidden');
+      quizContainer.classList.add('hidden');
+      loadingState.classList.remove('hidden');
+
+      setTimeout(() => {
+        loadingState.classList.add('hidden');
+        quizContainer.classList.remove('hidden');
+        statsBar.classList.remove('hidden');
+
+        // إنشاء أسئلة محاكاة ذكية بناءً على النص
+        currentQuestions = [
+          {
+            id: 1,
+            type: "mcq",
+            question: "ما هو الهدف الجوهري للنظام المذكور في المادة الدراسية؟",
+            options: [
+              "مراقبة الأنظمة واكتشاف التهديدات والأنماط المعقدة بدقة",
+              "إلغاء الحاجة للتدخل البشري والبرمجة بالكامل",
+              "تقليل سرعة الشبكة لضمان جودة الأمان فقط"
+            ],
+            correct: 0,
+            explanation: "الهدف الرئيسي هو الاكتشاف المبكر للمشكلات أو الهجمات وتحليل الأنماط لضمان استقرار العمليات."
+          },
+          {
+            id: 2,
+            type: "tf",
+            question: "هل تعتمد هذه النظم على جمع السجلات والبيانات السابقة للتعلم والتحليل؟",
+            options: ["صح", "خطأ"],
+            correct: 0,
+            explanation: "نعم، البيانات السابقة والسجلات (Logs) هي حجر الأساس الذي تستند إليه خوارزميات التحليل."
+          },
+          {
+            id: 3,
+            type: "mcq",
+            question: "ما هي الخطوة الحاسمة لمنع انتشار الأضرار عند حدوث خلل أو تهديد؟",
+            options: [
+              "إعادة تثبيت كل البرامج من الصفر فوراً",
+              "مرحلة الاحتواء والعزل الفوري للعناصر المتأثرة",
+              "تجاهل التنبيه حتى ينتهي بنفسه"
+            ],
+            correct: 1,
+            explanation: "العزل والاحتواء (Containment) يمنع انتقال التهديد إلى بقية أجزاء المنظومة."
+          }
+        ];
+
+        renderQuiz();
+      }, 1100);
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById('quizContainer');
+      container.innerHTML = '';
+      score = 0;
+      answeredCount = 0;
+      updateScore();
+
+      currentQuestions.forEach((q, index) => {
+        const qCard = document.createElement('div');
+        qCard.className = 'glass-card p-5 rounded-2xl border border-slate-800 space-y-4';
+        
+        let optionsHtml = '';
+        q.options.forEach((opt, optIndex) => {
+          optionsHtml += `
+            <button onclick="handleAnswer(${index}, ${optIndex}, this)" class="opt-btn w-full text-right p-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-sm font-medium transition flex items-center justify-between">
+              <span>${opt}</span>
+              <span class="icon-indicator text-slate-500"><i class="fa-regular fa-circle"></i></span>
+            </button>
+          `;
+        });
+
+        qCard.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-brand-500/10 text-brand-cyan">سؤال ${index + 1}</span>
+            <span class="text-xs text-slate-400">${q.type === 'mcq' ? 'اختيار من متعدد' : 'صح أو خطأ'}</span>
+          </div>
+          <p class="font-bold text-slate-100 text-base">${q.question}</p>
+          <div class="space-y-2">${optionsHtml}</div>
+          <div id="exp-${index}" class="hidden p-3 rounded-xl bg-slate-900 border border-slate-700/60 text-xs text-slate-300">
+            <span class="font-bold text-brand-cyan block mb-1"><i class="fa-solid fa-wand-magic-sparkles ml-1"></i> توضيح الذكاء الاصطناعي:</span>
+            ${q.explanation}
+          </div>
+        `;
+        container.appendChild(qCard);
+      });
+    }
+
+    function handleAnswer(qIndex, selectedIndex, btnElement) {
+      const card = btnElement.closest('.glass-card');
+      const allButtons = card.querySelectorAll('.opt-btn');
+      
+      // تعطيل الأزرار بعد أول إجابة
+      allButtons.forEach(b => b.disabled = true);
+
+      const q = currentQuestions[qIndex];
+      const explanation = document.getElementById(`exp-${qIndex}`);
+
+      if (selectedIndex === q.correct) {
+        btnElement.classList.add('bg-emerald-950/80', 'border-emerald-500', 'text-emerald-300');
+        btnElement.querySelector('.icon-indicator').innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400"></i>';
+        score++;
+      } else {
+        btnElement.classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-300');
+        btnElement.querySelector('.icon-indicator').innerHTML = '<i class="fa-solid fa-circle-xmark text-rose-400"></i>';
+        // تظليل الإجابة الصحيحة
+        allButtons[q.correct].classList.add('border-emerald-500/70', 'text-emerald-300');
+      }
+
+      explanation.classList.remove('hidden');
+      answeredCount++;
+      updateScore();
+    }
+
+    function updateScore() {
+      document.getElementById('scoreText').innerText = `${score} من ${currentQuestions.length}`;
+    }
+
+    function resetQuiz() {
+      renderQuiz();
+    }
+
+    // منطق مؤقت بومودورو
+    let timerDuration = 25 * 60;
+    let timerInterval = null;
+    let isRunning = false;
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timerDuration / 60);
+      const seconds = timerDuration % 60;
+      document.getElementById('timerDisplay').innerText = 
+        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function toggleTimer() {
+      const btn = document.getElementById('timerToggleBtn');
+      if (isRunning) {
+        clearInterval(timerInterval);
+        btn.innerText = 'استئناف';
+        isRunning = false;
+      } else {
+        isRunning = true;
+        btn.innerText = 'إيقاف مؤقت';
+        timerInterval = setInterval(() => {
+          if (timerDuration > 0) {
+            timerDuration--;
+            updateTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            alert("انتهت جلسة المذاكرة! خذ استراحة لمدة 5 دقائق.");
+            resetTimer();
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      isRunning = false;
+      timerDuration = 25 * 60;
+      document.getElementById('timerToggleBtn').innerText = 'بدء';
+      updateTimerDisplay();
+    }
+  </script>
+</body>
+</html>
